@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="update">
+    
+    {% if messages %}
+        <div id="messages">
+            {% for i in messages %}
+                <p>{{ i }}</p>
+            {% endfor %}
+        </div>
+        <script>
+            setTimeout(function(){
+                document.getElementById('messages').style.display='none';
+            }, 6000);
+        </script>
+    {% endif %}
+
+    <h2>Update Contact</h2>    
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">Update</button>
+        <a href="{% url 'contacts' %}">
+            <button type="button">Cancel</button>
+        </a>
+    </form>
+
+</div>
+
+{% endblock %}
